@@ -2,7 +2,6 @@ const wordsList = 'abandonner,abattre,abri,absence,absolu,absolument,accent,acce
 
 const wordsArray = wordsList.split(',');
 
-
 // un mot aléatoire du tableau
 let mot_a_trouver = wordsArray[Math.floor(Math.random() * wordsArray.length)];
 
@@ -11,6 +10,7 @@ let lettre_trouver = [];
 let erreurs_commises = 0;
 const erreurs_autorisees = 7;
 let mot_trouve = '-'.repeat(mot_a_trouver.length).split(""); //repete - par le nombre de lettre du mot
+let score = 0; // Variable pour suivre le score
 
 // état du mot
 function afficherMot() {
@@ -66,11 +66,13 @@ function jouer() {
     }
 
     if (victoire()) {
-        document.getElementById('message').innerHTML = "Gagné!";
+        score += (erreurs_autorisees - erreurs_commises); // Calculer le score moyen sur les erreurs commises
+        document.getElementById('message').innerHTML = `Gagné !!! Score: ${score}`;
     } else if (erreurs_commises >= erreurs_autorisees) {
-        document.getElementById('message').innerHTML = `Perdu !!! Mot recherché: ${mot_a_trouver}`;
+        document.getElementById('message').innerHTML = `Perdu !!! Mot recherché: ${mot_a_trouver}. Score: ${score}`;
     }
 }
+
 // démarrer ou redémarrer le jeu
 function debut() {
     erreurs_commises = 0; 
@@ -82,4 +84,5 @@ function debut() {
     potence(); 
 }
 
-debut()
+debut();
+
