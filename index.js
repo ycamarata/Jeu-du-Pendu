@@ -84,5 +84,12 @@ function debut() {
     potence(); 
 }
 
+    //écouteur d'événements pour la touche "Entrée"
+    document.getElementById('lettreInput').addEventListener('keypress', function(event) {
+        if (event.key === 'Enter') {
+            jouer(); // Appeler la fonction jouer() lorsque la touche "Entrée" est pressée
+        }
+    });
+
 debut();
 
